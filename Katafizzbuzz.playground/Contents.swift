@@ -1,31 +1,45 @@
 import UIKit
+import XCTest
 
-// MARK: - Katafizzbuzz.
-
-for i in 1...100 {
-    if i.isMultiple(of: 3) && i.isMultiple(of: 5) {
-        print("fizzbuzz")
-    } else if i.isMultiple(of: 3) {
-        print("fizz")
-    } else if i.isMultiple(of: 5) {
-        print("buzz")
-    } else {
-        print(i)
+class FizzBuzz {
+    func count() {
+        for i in 1...100 {
+            print(fizzBuzz(number: i))
+        }
+    }
+    
+    func fizzBuzz(number: Int) -> String {
+        if number.isMultiple(of: 3) && number.isMultiple(of: 5) {
+            return "fizzbuzz"
+        } else if number.isMultiple(of: 3) {
+            return "fizz"
+        } else if number.isMultiple(of: 5) {
+            return "buzz"
+        }
+        return "\(number)"
     }
 }
 
-// MARK: - String news in Swift 5
-
-let track = "Nothing Else Matters"
-print(#"My favorite tune\song is \#(track)."#)
-
-let hashtag = ##"You can use the Swift "hashtag" #swift in Swift 5."##
-print(hashtag)
-
-func doublee(number: Int, returning: (Int) -> Void){
-    returning(number * 2)
+class FizzBuzzTest: XCTestCase {
+    let fizzBuzz = FizzBuzz()
+    override func setUp() {
+        testBuzz()
+        testFizz()
+        testFizzBuzz()
+    }
+    
+    func testFizz() {
+        XCTAssertEqual(fizzBuzz.fizzBuzz(number: 3), "fizz")
+    }
+    
+    func testBuzz() {
+        XCTAssertEqual(fizzBuzz.fizzBuzz(number: 5), "buzz")
+    }
+    
+    func testFizzBuzz() {
+        XCTAssertEqual(fizzBuzz.fizzBuzz(number: 15), "fizzbuzz")
+    }
 }
 
-doublee(number: 5) { returning in
-    print(returning)
-}
+let test = FizzBuzzTest()
+test.run()
