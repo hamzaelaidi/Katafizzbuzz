@@ -1,8 +1,9 @@
 //
 //  FizzBuzz.swift
+//  Kata-FizzBuzz
 //
-//
-//  Created by Hamza EL AIDI on 15/07/2019.
+//  Created by Hamza EL AIDI on 18/09/2019.
+//  Copyright © 2019 Hamza EL AIDI. All rights reserved.
 //
 
 import Foundation
@@ -13,25 +14,7 @@ class FizzBuzz {
         case validNumberException(String)
     }
     
-    let config = [3 : "Fizz", 5 : "Buzz"]
-    
     func convert(input: Int) throws -> String {
-        if input < 1 || input > 100 {
-            throw CustomError.validNumberException("numéro n'est pas valide")
-        }
-        var converted = ""
-        for (key, value) in config {
-            if input % key == 0 {
-                converted = converted + value
-            }
-        }
-        if converted == "" {
-            return "\(input)"
-        }
-        return converted
-    }
-    
-/*    func oldconvert(input: Int) throws -> String {
         if input < 1 || input > 100 {
             throw CustomError.validNumberException("numéro n'est pas valide")
         }
@@ -44,7 +27,7 @@ class FizzBuzz {
             return "Buzz"
         }
         return "\(input)"
-    }*/
+    }
     
     private func isMultipleOf3(number: Int) -> Bool {
         return number % 3 == 0
@@ -53,5 +36,4 @@ class FizzBuzz {
     private func isMultipleOf5(number: Int) -> Bool {
         return number % 5 == 0
     }
-    
 }
